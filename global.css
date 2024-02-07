@@ -33,14 +33,14 @@ img {
 
 .display-none {
     display: none;
-    position: absolute;
+    /* position: absolute;
     width: 1px;
     height: 1px;
     margin: -1px;
     border: 0;
     padding: 0;
     clip: rect(0 0 0 0);
-    overflow: hidden;
+    overflow: hidden; */
 }
 /* 
 .container {
@@ -67,6 +67,7 @@ img {
 }
 
 .todo-top {
+    width: 600px;
     display: flex;
     margin-bottom: 10px;
     align-items: center;
@@ -74,6 +75,7 @@ img {
 }
 
 .todo-input {
+    width: 450px;
     padding: 10px;
     font-size: 20px;
     font-weight: bold;
@@ -83,6 +85,7 @@ img {
 }
 
 .todo-btn {
+    width: 150px;
     padding: 10px;
     font-size: 20px;
     cursor: pointer;
@@ -100,30 +103,37 @@ img {
 }
 
 .todo-ul {
-    width: 357px;
+    width: 600px;
     padding: 10px;
+    max-height: 350px;
     font-size: 18px;
     font-weight: bold;
     text-align: center;
     border-radius: 10px;
+    overflow: auto;
     background-color: #fff;
 }
 
 .todo-li {
+    display: flex;
+    align-items: center;
     margin-bottom: 10px;
+    padding-bottom: 10px;
+    justify-content: space-between;
     border-bottom: 2px solid #222;
 }
 
 .todo-li:last-child {
     margin-bottom: 0;
     border-bottom: 0;
+    padding-bottom: 0;
 }
 
 #myAudio {
     display: none;
 }
 
-#deleteTodo {
+.delete-todo {
     padding: 5px;
     /* font-size: 20px; */
     border: 1px solid #222;
@@ -135,11 +145,44 @@ img {
     transition: all 0.3s ease-in-out;
 }
 
-#deleteTodo:hover {
+.delete-todo:hover {
     color: #fff;
     background-color: black;
 }
 
-#deleteTodo:active {
+.delete-todo:active {
     opacity: 0.5;
+}
+
+.edit-todo {
+    padding: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 10px;
+    border-radius: 10px;
+    border: 1px solid #222;
+    background-color: #fff;
+    font-family: "Roboto Slab";
+    transition: all 0.3s ease-in-out;
+}
+
+.edit-todo:hover {
+    color: #fff;
+    background-color: black;
+}
+.edit-todo:active {
+    opacity: 0.5;
+}
+
+.edit-todo-input {
+    color: #000;
+    display: flex;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border: 1px #222 solid;
 }

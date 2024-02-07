@@ -1,58 +1,149 @@
 const todoInput = document.getElementById('todoInput');
 const todoAddBtn = document.getElementById('todoAddBtn');
 const todoUl = document.getElementById('todoUl');
-const deleteTodoBtn = document.getElementById('deleteTodo')
-let todos = JSON.parse(localStorage.getItem('Todolar')) || [];
-let todoList = todos.slice(); 
+const editTodo = document.getElementById('editTodo')
+const deleteTodo = document.getElementById('deleteTodo')
+const todos = JSON.parse(localStorage.getItem('todos')) || []
+const todoList = todos.slice()
 
-const addTodoLocalStorage = () => {
-    localStorage.setItem('Todolar', JSON.stringify(todoList));
-};
-
-const getTodoFromLocalStorage = () => {
+const getItem = () => {
     todos.forEach(todoText => {
         const todoLi = document.createElement('li');
-        todoLi.textContent = todoText;
+        todoLi.textContent = todoText
         todoLi.classList.add('todo-li');
+        const editBtn = document.createElement('button')
+        editBtn.classList.add('edit-todo')
+        editBtn.textContent = 'Edit'
+        editBtn.addEventListener('click', ()=> {
+            const editTodoPrompt = prompt('Todo Kiriritng:')
+            if (editTodoPrompt.length > 3) {
+                todoLi.textContent = editTodoPrompt
+                const index = todoList.indexOf(todoText);
+                if (index !== -1) {
+                    todoList[index] = editTodoPrompt;
+                    setItemStorage();
+                }
+                
+                todoBtnWrapper.appendChild(deleteBtn)
+                todoLi.appendChild(todoBtnWrapper)
+                todoLi.appendChild(todoBtnWrapper)
+                todoList.push(todoInput.value)
+                // setItemStorage()
+            } else {
+                const writeTodo = confirm('Iltimos Todo Kiriting!')
+                if (writeTodo) {
+                    prompt('Todo Kiritng:')
+                } else {
+                    confirm('Todo Kirit Iplos!')
+                    prompt('Todo Kirit marraz!:')
+                }
+            }
+        })
+        
+        const deleteBtn = document.createElement('button')
+        deleteBtn.classList.add('delete-todo')
+        
+        deleteBtn.textContent = 'Delete'
+        deleteBtn.addEventListener('click', ()=> {
+            todoUl.removeChild(todoLi)
+            const index = todoList.indexOf(todoText);
+            if (index !== -1) {
+                todoList.splice(index, 1);
+                setItemStorage();
+            }
+        })
+        
+        const todoBtnWrapper = document.createElement('div')
+        
+        todoBtnWrapper.appendChild(editBtn)
+        todoBtnWrapper.appendChild(deleteBtn)
+        
+        todoLi.appendChild(todoBtnWrapper)
         todoUl.appendChild(todoLi);
     });
-    
-    todoUl.classList.remove('display-none');
-    
-};
+}
 
-getTodoFromLocalStorage();
+getItem()
 
-const addTodo = () => {
-    const todoInputValue = todoInput.value.trim();
+const setItemStorage = () => {
+    localStorage.setItem('todos', JSON.stringify(todoList))
+}
+
+const addTodo = ()=> {
+    const todoText = todoInput.value.trim();
     
-    if (todoInputValue === '') {
-        alert('Iltimos todo kiriting!');
+    if (!todoText) {
+        alert('Please enter a todo.');
         return;
-    } else{
-        const todoLi = document.createElement('li');
-        todoLi.textContent = todoInputValue;
-        todoLi.classList.add('todo-li');
-        todoUl.appendChild(todoLi);
-        todoList.push(todoInputValue);
-        const deleteBtn = document.createElement('button')
-        deleteBtn.classList.add('deleteTodoBtn')
-        todoLi.appendChild(deleteBtn)
+
+    } else {
         
-        addTodoLocalStorage();
-        todoInput.value = '';
-        // deleteTodoBtn.addEventListener('click', ()=> {
-        // })
+        todoUl.classList.remove('display-none')
+        
+        const todoLi = document.createElement('li')
+        todoLi.textContent = todoInput.value
+        todoLi.classList.add('todo-li')
+        
+        const editBtn = document.createElement('button')
+        editBtn.classList.add('edit-todo')
+        editBtn.textContent = 'Edit'
+        
+        editBtn.addEventListener('click', ()=> {
+            const editTodoPrompt = prompt('Todo Kiriritng:')
+            if (editTodoPrompt.length > 3) {
+                todoLi.textContent = editTodoPrompt
+                const index = todoList.indexOf(todoText);
+                if (index !== -1) {
+                    todoList[index] = editTodoPrompt;
+                    setItemStorage();
+                }
+                
+                todoBtnWrapper.appendChild(deleteBtn)
+                todoLi.appendChild(todoBtnWrapper)
+                todoList.push(editTodoPrompt)
+                // setItemStorage()
+            } else {
+                const writeTodo = confirm('Iltimos Todo Kiriting!')
+                if (writeTodo) {
+                    prompt('Todo Kiriritng:')
+                } else {
+                    confirm('Todo Kirit Iplos!')
+                }
+            }
+        })
+        
+        const deleteBtn = document.createElement('button')
+        deleteBtn.classList.add('delete-todo')
+        deleteBtn.textContent = 'Delete'
+        
+        const todoBtnWrapper = document.createElement('div')
+        
+        todoBtnWrapper.appendChild(editBtn)
+        todoBtnWrapper.appendChild(deleteBtn)
+        deleteBtn.addEventListener('click', ()=> {
+            todoUl.removeChild(todoLi)
+            const index = todoList.indexOf(todoText);
+            if (index !== -1) {
+                todoList.splice(index, 1);
+                setItemStorage();
+            }
+        })
+        
+        todoLi.appendChild(todoBtnWrapper)
+        
+        todoUl.appendChild(todoLi)
+        todoList.push(todoInput.value)
+        setItemStorage()
+        todoInput.value = ''
     }
-};
+}
 
 todoAddBtn.addEventListener('click', ()=> {
     addTodo()
-});
+})
 
-todoUl.classList.remove('display-none')
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-        addTodo();
+todoInput.addEventListener('keydown', (e)=> {
+    if (e.key === "Enter") {
+        addTodo()
     }
-});
+})
