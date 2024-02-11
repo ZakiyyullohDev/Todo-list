@@ -7,6 +7,7 @@ const todos = JSON.parse(localStorage.getItem('todos')) || []
 const todoList = todos.slice()
 
 const getItem = () => {
+
     todos.forEach(todoText => {
         const todoLi = document.createElement('li');
         todoLi.textContent = todoText
@@ -28,7 +29,6 @@ const getItem = () => {
                 todoLi.appendChild(todoBtnWrapper)
                 todoLi.appendChild(todoBtnWrapper)
                 todoList.push(todoInput.value)
-                // setItemStorage()
             } else {
                 const writeTodo = confirm('Iltimos Todo Kiriting!')
                 if (writeTodo) {
@@ -73,8 +73,13 @@ const addTodo = ()=> {
     const todoText = todoInput.value.trim();
     
     if (!todoText) {
-        alert('Please enter a todo.');
+        alert('Iltimos todo kiriting');
         return;
+
+    } else if (todoText.length > 40) {
+        alert("Iltimos 40 ta so'zdan kamroq yozing!")
+
+        todoInput.value = ''
 
     } else {
         
@@ -101,7 +106,7 @@ const addTodo = ()=> {
                 todoBtnWrapper.appendChild(deleteBtn)
                 todoLi.appendChild(todoBtnWrapper)
                 todoList.push(editTodoPrompt)
-                // setItemStorage()
+
             } else {
                 const writeTodo = confirm('Iltimos Todo Kiriting!')
                 if (writeTodo) {
@@ -144,6 +149,6 @@ todoAddBtn.addEventListener('click', ()=> {
 
 todoInput.addEventListener('keydown', (e)=> {
     if (e.key === "Enter") {
-        addTodo()
+        addTodo()      
     }
 })
