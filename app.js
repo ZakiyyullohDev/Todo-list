@@ -7,7 +7,7 @@ const todoAddBtn = document.getElementById('todoAddBtn');
 const todoInput = document.getElementById('todoInput');
 const todoUl = document.getElementById('todoUl');
 
-const setItemStorage = (id, todoText) => {
+const setItemStorage = (id, todoText) => {  
     if (id && todoText) {
         todoList.push(
             {
