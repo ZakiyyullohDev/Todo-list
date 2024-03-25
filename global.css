@@ -33,23 +33,7 @@ img {
 
 .display-none {
     display: none;
-    /* position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    border: 0;
-    padding: 0;
-    clip: rect(0 0 0 0);
-    overflow: hidden; */
 }
-/* 
-.container {
-    max-width: 1056px;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-left: auto;
-    margin-right: auto;
-} */
 
 .starter-h1 {
     margin-top: 20px;
@@ -79,9 +63,9 @@ img {
     padding: 10px;
     font-size: 20px;
     font-weight: bold;
+    user-select: text;
     border-radius: 10px;
     font-family: "Roboto Slab";
-    /* border: 2px solid blueviolet; */
 }
 
 .todo-btn {
@@ -92,7 +76,6 @@ img {
     font-weight: bold;
     border-radius: 10px;
     background-color: #fff;
-    /* border: 2px solid blue; */
     font-family: "Roboto Slab";
     transition: all 0.3s ease-in-out;
 }
@@ -135,7 +118,6 @@ img {
 
 .delete-todo {
     padding: 5px;
-    /* font-size: 20px; */
     border: 1px solid #222;
     cursor: pointer;
     font-weight: bold;
@@ -174,7 +156,7 @@ img {
     opacity: 0.5;
 }
 
-.edit-todo-input {
+.edit-todo-input { 
     color: #000;
     display: flex;
     font-size: 18px;
